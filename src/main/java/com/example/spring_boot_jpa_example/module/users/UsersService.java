@@ -28,12 +28,18 @@ public class UsersService {
     @Transactional // 메서드나 클래스 레벨에서 트랜잭션 동작을 제어하기 위해 사용됩니다. 트랜잭션이 활성화되면 데이터 수정, 삭제와 같은 작업이 수행 가능합니다. 변경 감지(Dirty Checking)를 활성화하여 엔티티 상태 변화를 DB에 반영합니다.
     public Users save(Long id, String username, String password, String email, UserStatus userStatus) {
         // 유저네임 중복 체크
-        Users existedUser = checkUsername(username);
+        Users existedUsername = checkUsername(username);
+        Users existedEmail = checkUsername(username);
 
         // 예외 처리
-        if (existedUser != null && !Objects.equals(existedUser.getId(), id)) {
+        if (existedUsername != null && !Objects.equals(existedUsername.getId(), id)) {
             throw new Exception400(ExceptionMessage.CAN_NOT_USE_USERNAME.getCode(),
                     ExceptionMessage.CAN_NOT_USE_USERNAME.getMessage());
+        }
+        // 예외 처리
+        if (existedEmail != null && !Objects.equals(existedEmail.getId(), id)) {
+            throw new Exception400(ExceptionMessage.CAN_NOT_USE_EMAIL.getCode(),
+                    ExceptionMessage.CAN_NOT_USE_EMAIL.getMessage());
         }
 
         // 패스워드 암호화
@@ -57,6 +63,12 @@ public class UsersService {
         Optional<Users> userOP = usersRepository.findByUsername(username);
         // 조회 후 존재하지 않은 경우 null을 리턴합니다.
         return userOP.orElse(null);
+    }
 
+    // username 필드 값으로 유저 엔티티 객체 조회 메서드
+    public Users checkEmail(String email) {
+        Optional<Users> userOP = usersRepository.findByEmail(email);
+        // 조회 후 존재하지 않은 경우 null을 리턴합니다.
+        return userOP.orElse(null);
     }
 }
