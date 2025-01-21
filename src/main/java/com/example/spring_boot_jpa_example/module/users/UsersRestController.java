@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,6 +21,16 @@ public class UsersRestController {
     ) {
 
         var responseDTO = usersImpService.page(pageable);
+
+        return ResponseEntity.ok(APIUtils.success(responseDTO));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> detail(
+            @PathVariable Long id
+    ) {
+
+        var responseDTO = usersImpService.detail(id);
 
         return ResponseEntity.ok(APIUtils.success(responseDTO));
     }
