@@ -82,7 +82,8 @@ public class SecurityConfig {
         configuration.setAllowedOrigins( // 이 설정은 지정된 출처에서 오는 요청만 허용합니다.
                 List.of(
                         "http://localhost",
-                        "http://localhost:8080"
+                        "http://localhost:8080",
+                        "http://localhost:8081"
                 )
         );
 
@@ -90,7 +91,7 @@ public class SecurityConfig {
         configuration.addExposedHeader(JWTProvider.HEADER); // JWTProvider에서 정의한 헤더(Authorization)를 노출합니다.
 
         var source = new UrlBasedCorsConfigurationSource(); // CORS 설정을 URL 경로별로 매핑하는 객체를 생성합니다.
-        source.registerCorsConfiguration("/**", configuration); // 모든 경로(/**)에 대해 정의한 CORS 설정을 적용합니다.
+        source.registerCorsConfiguration("/api/**", configuration); // 정의한 CORS 설정을 적용합니다.
         return source;
     }
 
@@ -109,5 +110,6 @@ public class SecurityConfig {
 
     public static final String[] WHITELIST = {
             "/test",
+            "/css/**"
     };
 }

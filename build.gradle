@@ -45,6 +45,8 @@ dependencies {
     testImplementation 'org.springframework.security:spring-security-test'
     // 자바 테스트 라이브러리
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    // html 템플릿 라이브러리
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' // Thymeleaf 의존성
 }
 
 tasks.named('test') {
