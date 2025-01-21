@@ -101,12 +101,6 @@ public class SecurityConfig {
     public static final String[] ADMIN = {
             "/api/v1/admin/**",
             "/api/v1/users/**",
-            "/api/v1/stores",
-            "/api/v1/stores/**",
-            "/api/v1/policies",
-            "/api/v1/policies/**",
-            "/api/v1/insurances",
-            "/api/v1/insurances/**",
     };
 
     public static final String[] USER = {
@@ -115,21 +109,5 @@ public class SecurityConfig {
 
     public static final String[] WHITELIST = {
             "/test",
-            "/api/v1/auth/**",
-            "/api/v1/shared/**",
-            "/h2-console",
-            "/h2-console/**",
-            "/api/v1/shared",
-            "/api/v1/shared/**",
-            "/api/v1/retails",
-            "/api/v1/retails/**",
-            "/api/v1/telecoms",
-            "/api/v1/telecoms/**",
-            "/api/v1/price-plans",
-            "/api/v1/price-plans/**",
-            "/api/v1/phones",
-            "/api/v1/phones/**",
-            "/api/v1/additional-services",
-            "/api/v1/additional-services/**",
     };
 }

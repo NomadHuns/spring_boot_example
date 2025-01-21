@@ -16,6 +16,7 @@ public enum ValidExceptionMessage {
     public static class Message {
         public static final String INVALID_USERNAME = "아이디는 4에서 15자 이내여야 합니다. 영문자, 숫자, '.', '-', '_', '!', '@', '#'만 허용됩니다.";
         public static final String INVALID_PASSWORD = "패스워드는 4에서 20자 이내여야 합니다. 영문자, 숫자, '.', '-', '_', '!', '@', '#'만 허용됩니다.";
+        public static final String INVALID_EMAIL = "올바르지 않은 이메일 양식입니다.";
         // 예시: public static final String INVALID_HELLO = "인사말을 작성하세요.";
     }
 }

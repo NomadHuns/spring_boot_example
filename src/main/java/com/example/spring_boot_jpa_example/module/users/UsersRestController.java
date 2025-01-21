@@ -1,13 +1,12 @@
 package com.example.spring_boot_jpa_example.module.users;
 
 import com.example.spring_boot_jpa_example._core.utils.APIUtils;
+import com.example.spring_boot_jpa_example.module.users.dtos.UsersSaveRequestDTO;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController // RestAPI로 요청하고 응답할 컨트롤러를 구현할때 사용되는 어노테이션.
 @RequiredArgsConstructor // 해당 클래스의 final로 지정된 필드를 가지는 생성자를 자동으로 생성하는 어노테이션. 의존성 주입을 위해 사용됨.
@@ -31,6 +30,15 @@ public class UsersRestController {
     ) {
 
         var responseDTO = usersImpService.detail(id);
+
+        return ResponseEntity.ok(APIUtils.success(responseDTO));
+    }
+
+    @PostMapping
+    public ResponseEntity<?> save(
+            @RequestBody @Valid UsersSaveRequestDTO requestDTO
+    ) {
+        var responseDTO = usersImpService.save(requestDTO);
 
         return ResponseEntity.ok(APIUtils.success(responseDTO));
     }
