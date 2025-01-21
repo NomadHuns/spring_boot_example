@@ -24,15 +24,26 @@ repositories {
 }
 
 dependencies {
+    // Hibernate를 사용하는 DB 통신 라이브러리
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    // 요청 시 인증/인가 처리를 할 필터를 구현할 때 사용되는 라이브러리
     implementation 'org.springframework.boot:spring-boot-starter-security'
+    // JWT 토큰 생성 및 검증 라이브러리
+    implementation group: 'com.auth0', name: 'java-jwt', version: '4.3.0'
+    // 사용자로부터 입력받은 값의 유효성을 확인하는 라이브러리
     implementation 'org.springframework.boot:spring-boot-starter-validation'
+    // 웹을 개발하기 위한 기본 라이브러리
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    // 편의성 애노테이션(@Getter,@RequiredConstructor)을 제공하는 라이브러리
     compileOnly 'org.projectlombok:lombok'
-    runtimeOnly 'com.h2database:h2'
     annotationProcessor 'org.projectlombok:lombok'
+    // 테스트용 인메모리 DBMS
+    runtimeOnly 'com.h2database:h2'
+    // 스프링부트 테스트 라이브러리
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    // 스프링부트 시큐리티(필터) 테스트 라이브러리
     testImplementation 'org.springframework.security:spring-security-test'
+    // 자바 테스트 라이브러리
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 

@@ -1,0 +1,40 @@
+server:
+  port: 8081 # 해당 어플리케이션이 사용한 포트 번호 지정
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb;MODE=MYSQL # H2 데이터베이스 지정, 모드는 MySQL
+    driverClassName: org.h2.Driver
+    username: sa # 데이터베이스 계정 이름
+    password: # 데이터베이스 계정 비밀번호(없을경우 입력하지 않아도 접근 가능)
+  h2:
+    console:
+      enabled: true
+      path: /h2-console # 데이터베이스 콘솔 접근 URL(example: localhost:8081/h2-console
+  sql:
+    init:
+      data-locations: classpath:db/data.sql # 해당 어플리케이션 실행시 데이터 초기화에 사용될 쿼리 파일이 저장된 위치 /src/resource/db/data.sql
+      mode: always # 어플리케이션 실행시 항상 데이터 초기화를 진행한다는 의미
+  jpa:
+    defer-datasource-initialization: true # 데이터베이스 스키마 초기화 및 데이터 로드가 JPA 엔티티 매핑이 완료된 후에 실행되도록 설정
+    open-in-view: true # EntityManager가 요청의 끝까지 열려 있어 LAZY 로딩이 뷰 레이어에서 작동할 수 있도록 함.
+    hibernate:
+      ddl-auto: create-drop # 애플리케이션이 시작될 때 데이터베이스 스키마를 생성하고, 종료 시 삭제
+              # none: 아무 작업도 수행하지 않음.
+              # create: 스키마를 새로 생성.
+              # create-drop: 스키마 생성 후 종료 시 삭제.
+              # update: 기존 스키마를 업데이트.
+              # validate: 엔티티와 스키마가 일치하는지 검증.
+    show-sql: true # 실행되는 SQL 쿼리를 로그로 출력
+    properties:
+      hibernate:
+        format-sql: true # SQL 쿼리를 보기 좋게 포맷해서 출력
+        use-sql-comments: true # 생성된 SQL에 주석을 포함시킴
+        default-batch-fetch-size: 500 # 연관 엔티티를 한 번에 조회할 수 있는 최대 개수를 지정(모든 리스트를 조회하려고 해도 500개까지 조회됨)
+  output:
+    ansi:
+      enabled: always # 어플리케이션 로그 파일에 색상 등을 넣어 보기좋도록 출력
+logging:
+  level: # 로그가 출력되는 레벨 지정
+    org.hibernate.SQL: trace # JPA SQL 쿼리 출력 레벨을 trace 이상 출력
+    org.hibernate.type.descriptor.sql: trace # JPA SQL 쿼리 주석 출력 레벨을 trace 이상 출력
+    kr.nomadhuns.spring_boot_pure: debug # 어플리케이션 출력 레벨을 debug 이상 출력
