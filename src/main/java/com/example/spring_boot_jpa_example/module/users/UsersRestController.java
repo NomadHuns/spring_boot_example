@@ -1,11 +1,13 @@
 package com.example.spring_boot_jpa_example.module.users;
 
 import com.example.spring_boot_jpa_example._core.utils.APIUtils;
+import com.example.spring_boot_jpa_example._core.utils.ValidErrorUtil;
 import com.example.spring_boot_jpa_example.module.users.dtos.UsersSaveRequestDTO;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 @RestController // RestAPI로 요청하고 응답할 컨트롤러를 구현할때 사용되는 어노테이션.
@@ -36,8 +38,10 @@ public class UsersRestController {
 
     @PostMapping
     public ResponseEntity<?> save(
-            @RequestBody @Valid UsersSaveRequestDTO requestDTO
+            @RequestBody @Valid UsersSaveRequestDTO requestDTO, Errors errors
     ) {
+        ValidErrorUtil.errorCheck(errors);
+
         var responseDTO = usersImpService.save(requestDTO);
 
         return ResponseEntity.ok(APIUtils.success(responseDTO));
