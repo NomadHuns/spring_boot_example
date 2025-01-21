@@ -1,6 +1,7 @@
 package com.example.spring_boot_jpa_example._core.exception;
 
 import com.example.spring_boot_jpa_example._core.utils.APIUtils;
+import com.example.spring_boot_jpa_example._core.utils.CommonScriptUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -12,6 +13,14 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
  */
 @ControllerAdvice
 public class CustomExceptionHandler {
+
+    @ExceptionHandler(ViewException.class)
+    public ResponseEntity<?> customException(ViewException e) {
+        if (e.getLocation() == null) {
+            return new ResponseEntity<>(CommonScriptUtils.back(e.getMessage()), e.getStatus());
+        }
+        return new ResponseEntity<>(CommonScriptUtils.herf(e.getMessage(), e.getLocation()), e.getStatus());
+    }
 
     // Exception401 예외 처리 등록
     @ExceptionHandler(Exception401.class) // Exception401 예외 발생시 처리할 핸들러

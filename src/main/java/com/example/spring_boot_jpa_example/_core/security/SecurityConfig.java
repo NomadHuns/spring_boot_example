@@ -109,7 +109,7 @@ public class SecurityConfig {
     };
 
     public static final String[] WHITELIST = {
-            "/test",
+            "/test/**",
             "/css/**"
     };
 }
