@@ -1,6 +1,6 @@
 package com.example.spring_boot_jpa_example._core.utils;
 
-import com.example.spring_boot_jpa_example._core.exception.Exception403;
+import com.example.spring_boot_jpa_example._core.exception.RestException403;
 import com.example.spring_boot_jpa_example._core.exception.ExceptionMessage;
 import com.example.spring_boot_jpa_example._core.security.CustomUserDetails;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +15,7 @@ public class AuthorityCheckUtils {
         if (customUserDetails.getAuthorities().stream()
                 .noneMatch(grantedAuthority -> grantedAuthority.getAuthority().equals(userRole))) {
 
-            throw new Exception403(ExceptionMessage.COMMON_AUTHORITY_FAIL.getMessage());
+            throw new RestException403(ExceptionMessage.COMMON_AUTHORITY_FAIL.getMessage());
         }
 
         return true;
@@ -29,7 +29,7 @@ public class AuthorityCheckUtils {
         if (!authorities.isEmpty()) {
             return true;
         } else {
-            throw new Exception403(ExceptionMessage.COMMON_AUTHORITY_FAIL.getMessage());
+            throw new RestException403(ExceptionMessage.COMMON_AUTHORITY_FAIL.getMessage());
         }
     }
 }

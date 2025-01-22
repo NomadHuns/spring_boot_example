@@ -1,6 +1,6 @@
 package com.example.spring_boot_jpa_example.module.users;
 
-import com.example.spring_boot_jpa_example._core.exception.Exception400;
+import com.example.spring_boot_jpa_example._core.exception.RestException400;
 import com.example.spring_boot_jpa_example._core.exception.ExceptionMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,7 +21,7 @@ public class UsersService {
     public Users findById(long id) {
         return usersRepository.findById(id) // 해당 엔티티 객체를 조회
                 // 만약 객체가 존재하지 않은 경우 예외처리합니다.
-                .orElseThrow(() -> new Exception400(ExceptionMessage.NOT_FOUND_USER.getCode(),
+                .orElseThrow(() -> new RestException400(ExceptionMessage.NOT_FOUND_USER.getCode(),
                         ExceptionMessage.NOT_FOUND_USER.getMessage()));
     }
 
@@ -33,12 +33,12 @@ public class UsersService {
 
         // 예외 처리
         if (existedUsername != null && !Objects.equals(existedUsername.getId(), id)) {
-            throw new Exception400(ExceptionMessage.CAN_NOT_USE_USERNAME.getCode(),
+            throw new RestException400(ExceptionMessage.CAN_NOT_USE_USERNAME.getCode(),
                     ExceptionMessage.CAN_NOT_USE_USERNAME.getMessage());
         }
         // 예외 처리
         if (existedEmail != null && !Objects.equals(existedEmail.getId(), id)) {
-            throw new Exception400(ExceptionMessage.CAN_NOT_USE_EMAIL.getCode(),
+            throw new RestException400(ExceptionMessage.CAN_NOT_USE_EMAIL.getCode(),
                     ExceptionMessage.CAN_NOT_USE_EMAIL.getMessage());
         }
 

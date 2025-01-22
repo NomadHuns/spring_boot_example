@@ -1,6 +1,6 @@
 package com.example.spring_boot_jpa_example._core.utils;
 
-import com.example.spring_boot_jpa_example._core.exception.Exception400;
+import com.example.spring_boot_jpa_example._core.exception.RestException400;
 import com.example.spring_boot_jpa_example._core.exception.ExceptionMessage;
 import org.springframework.validation.Errors;
 
@@ -14,7 +14,7 @@ public class ValidErrorUtil {
             LoggerUtil.info(errors.getAllErrors()
                     .get(0)
                     .getDefaultMessage());
-            throw new Exception400(ExceptionMessage.COMMON_VALID_FAIL.getCode(), errors.getAllErrors()
+            throw new RestException400(ExceptionMessage.COMMON_VALID_FAIL.getCode(), errors.getAllErrors()
                     .get(0)
                     .getDefaultMessage());
         }

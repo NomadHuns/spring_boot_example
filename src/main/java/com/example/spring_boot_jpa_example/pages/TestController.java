@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/test")
-public class UserController {
+public class TestController {
     private final UsersImpService usersImpService;
 
     @GetMapping

@@ -23,26 +23,26 @@ public class CustomExceptionHandler {
     }
 
     // Exception401 예외 처리 등록
-    @ExceptionHandler(Exception401.class) // Exception401 예외 발생시 처리할 핸들러
-    public ResponseEntity<?> unAuthorized(Exception401 e){
+    @ExceptionHandler(RestException401.class) // Exception401 예외 발생시 처리할 핸들러
+    public ResponseEntity<?> unAuthorized(RestException401 e){
         return new ResponseEntity<>(e.body(), e.status()); // 응답 구조를 생성하여 사용자에게 응답함.
     }
 
     // Exception403 예외 처리 등록
-    @ExceptionHandler(Exception403.class)
-    public ResponseEntity<?> forbidden(Exception403 e){
+    @ExceptionHandler(RestException403.class)
+    public ResponseEntity<?> forbidden(RestException403 e){
         return new ResponseEntity<>(e.body(), e.status());
     }
 
     // Exception400 예외 처리 등록
-    @ExceptionHandler(Exception400.class)
-    public ResponseEntity<?> badRequest(Exception400 e){
+    @ExceptionHandler(RestException400.class)
+    public ResponseEntity<?> badRequest(RestException400 e){
         return new ResponseEntity<>(e.body(), e.status());
     }
 
     // Exception500 예외 처리 등록
-    @ExceptionHandler(Exception500.class)
-    public ResponseEntity<?> internalServerError(Exception500 e){
+    @ExceptionHandler(RestException500.class)
+    public ResponseEntity<?> internalServerError(RestException500 e){
         return new ResponseEntity<>(e.body(), e.status());
     }
 

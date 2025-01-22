@@ -110,6 +110,7 @@ public class SecurityConfig {
 
     public static final String[] WHITELIST = {
             "/test/**",
-            "/css/**"
+            "/css/**",
+            "/auth/**"
     };
 }

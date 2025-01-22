@@ -14,6 +14,8 @@ public enum ExceptionMessage {
     INVALID_ROLE(7, "존재하지 않는 역할입니다."),
     NOT_FOUND_USER_ROLE(8, "존재하지 않는 유저롤입니다.(데이터가 잘못된 것입니다. 서버 담당자를 찾으세요.)"),
     CAN_NOT_USE_EMAIL(9, "중복되는 이메일입니다."),
+    LOGIN_FAIL(10,"아이디 혹은 비밀번호가 틀렸습니다."),
+    IS_NOT_REFRESH_TOKEN(11, "refreshToken이 아닙니다."),
     // 예시: HELLO_EXCEPTION(0, "인사를 하지 않았습니다."),
     ;
 

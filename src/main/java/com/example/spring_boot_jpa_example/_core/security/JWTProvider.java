@@ -6,8 +6,8 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.example.spring_boot_jpa_example._core.exception.Exception401;
-import com.example.spring_boot_jpa_example._core.exception.Exception500;
+import com.example.spring_boot_jpa_example._core.exception.RestException401;
+import com.example.spring_boot_jpa_example._core.exception.RestException500;
 import com.example.spring_boot_jpa_example._core.exception.ExceptionMessage;
 import com.example.spring_boot_jpa_example.module.users.roles.UserRoles;
 import org.springframework.beans.factory.annotation.Value;
@@ -66,7 +66,7 @@ public class JWTProvider {
         } else if (jwtType.equals(JWTType.REFRESH_TOKEN)) {
             return new Date(System.currentTimeMillis() + REFRESH_EXP);
         } else {
-            throw new Exception500(ExceptionMessage.INVALID_TOKEN_TYPE.getCode(), ExceptionMessage.INVALID_TOKEN_TYPE.getMessage());
+            throw new RestException500(ExceptionMessage.INVALID_TOKEN_TYPE.getCode(), ExceptionMessage.INVALID_TOKEN_TYPE.getMessage());
         }
     }
 
@@ -88,12 +88,12 @@ public class JWTProvider {
 
             // 토큰의 유효기간을 확인합니다.
             if (new Date().after(verify.getExpiresAt()) ) {
-                throw new Exception401("세션이 만료되었습니다.");
+                throw new RestException401("세션이 만료되었습니다.");
             }
 
             // 토큰 타입을 확인합니다.
             if (!verify.getClaim("token-type").asString().equals(JWTType.ACCESS_TOKEN.name())) {
-                throw new Exception401("올바르지 않은 토큰입니다.");
+                throw new RestException401("올바르지 않은 토큰입니다.");
             }
 
         } catch (JWTVerificationException e) {

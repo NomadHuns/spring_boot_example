@@ -2,7 +2,7 @@ package com.example.spring_boot_jpa_example._core.security;
 
 import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
-import com.example.spring_boot_jpa_example._core.exception.Exception403;
+import com.example.spring_boot_jpa_example._core.exception.RestException403;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.Cookie;
@@ -41,7 +41,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
 
             // 토큰이 존재하는지 확인합니다.
             if (!provider.validateToken(jwt)) {
-                throw new Exception403("접근이 거부되었습니다.");
+                throw new RestException403("접근이 거부되었습니다.");
             }
 
             try {

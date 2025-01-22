@@ -1,4 +1,4 @@
-package com.example.spring_boot_jpa_example._common;
+package com.example.spring_boot_jpa_example._common.dtos;
 
 import com.example.spring_boot_jpa_example.module.users.roles.UserRoles;
 import lombok.Getter;

@@ -1,6 +1,6 @@
 package com.example.spring_boot_jpa_example.module.users.roles;
 
-import com.example.spring_boot_jpa_example._core.exception.Exception400;
+import com.example.spring_boot_jpa_example._core.exception.RestException400;
 import com.example.spring_boot_jpa_example._core.exception.ExceptionMessage;
 import com.example.spring_boot_jpa_example.module.users.Users;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +23,7 @@ public class UserRolesService {
 
     public UserRoles findByUserId(Long userId) {
         return userRolesRepository.findByUser_Id(userId)
-                .orElseThrow(() -> new Exception400(ExceptionMessage.NOT_FOUND_USER_ROLE.getCode(),
+                .orElseThrow(() -> new RestException400(ExceptionMessage.NOT_FOUND_USER_ROLE.getCode(),
                         ExceptionMessage.NOT_FOUND_USER_ROLE.getMessage()));
     }
 
